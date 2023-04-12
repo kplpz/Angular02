@@ -8,4 +8,6 @@ import { IMascota } from '@modules/mascotas/interface/mascotas.interface';
 })
 export class CardComponent {
   @Input() obj!:IMascota
+
+  
 }

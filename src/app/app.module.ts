@@ -11,6 +11,7 @@ import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { RedireccionComponent } from './modules/redireccion/redireccion.component';
+import { MascotaComponent } from '@modules/mascotas/pages/mascota/mascota.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RedireccionComponent } from './modules/redireccion/redireccion.componen
     HeaderComponent,
     FooterComponent,
     SkeletonComponent,
-    RedireccionComponent
+    RedireccionComponent,
+    MascotaComponent
   ],
   imports: [
     BrowserModule,
