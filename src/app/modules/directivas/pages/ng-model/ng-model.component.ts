@@ -7,10 +7,11 @@ import { Component } from '@angular/core';
 })
 export class NgModelComponent {
 
-  titulo = 'Directiva ngModel';
+  titulo = 'Directiva NgModel';
   nombre = '';
   nombre2 = '';
-  formartNombre(): void {
+
+  formatNombre(): void {
     this.nombre = this.nombre.toLowerCase();
     this.nombre2 = this.nombre2.toUpperCase();
   }

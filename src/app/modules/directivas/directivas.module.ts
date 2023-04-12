@@ -9,6 +9,7 @@ import { NgClassComponent } from './pages/ng-class/ng-class.component';
 import { NgStyleComponent } from './pages/ng-style/ng-style.component';
 import { BinDingComponent } from './pages/bin-ding/bin-ding.component';
 import { NgModelComponent } from './pages/ng-model/ng-model.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NgModelComponent } from './pages/ng-model/ng-model.component';
   ],
   imports: [
     CommonModule,
-    DirectivasRoutingModule
+    DirectivasRoutingModule,
+    FormsModule
   ]
 })
 export class DirectivasModule { }
