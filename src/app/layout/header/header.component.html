@@ -1,0 +1,51 @@
+<div class="banner fixed-top"></div>
+
+<div class="bg-dark">
+  <div class="container">
+    <!-- espacio para el nav -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <!-- aqui va el logo -->
+          <img width="30%" alt="" [src]="logo"> Diplomado
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" aria-expanded="false" href="#" role="button"
+                data-bs-toggle="dropdown">Directivas</a>
+              <ul class="dropdown-menu">
+                <li routerLinkActive="active">
+                  <a class="dropdown-item" [routerLink]="['directivas/ngIf']">NgIf</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a class="dropdown-item" [routerLink]="['directivas/ngFor']">NgFor</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a class="dropdown-item" [routerLink]="['directivas/ngSwitch']">NgSwitch</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a class="dropdown-item" [routerLink]="['directivas/binDing']">BinDing</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a class="dropdown-item" [routerLink]="['directivas/ngStyle']">NgStyle</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a class="dropdown-item" [routerLink]="['directivas/ngClass']">NgClass</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a class="dropdown-item" [routerLink]="['directivas/ngModel']">NgModel</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- fin espacio para el nav -->
+  </div>
+</div>
