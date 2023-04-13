@@ -1,42 +1,59 @@
 import { Injectable } from '@angular/core';
 import { IMascota } from '../interface/mascotas.interface';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 @Injectable({
   providedIn: 'root'
-  
+
 })
 export class MascotasService {
-  //http:string ='http://localhost:3000/mascotas/?q=Alemania&_limit=10';
   private baseUrl:string = environment.baseUrl;
-  mascotas:any=[];
+  
+  constructor(
+    private http:HttpClient,
+    private http1: HttpClient
+    ) {
+  }
+
+  //OBSERVABLES
+  get mascotas():Observable<IMascota[]>{
+    return this.http.get<IMascota[]>(`${this.baseUrl}/mascotas`)
+  }
 
   buscarMascota(termino:string):Observable<IMascota[]>{
     if(termino.length>1){
-      return this.http.get<IMascota[]>(`${this.baseUrl}/mascotas/?=${termino}&_limit=5`);
+      return this.http.get<IMascota[]>(`${this.baseUrl}/mascotas/?q=${termino}&_limit=5`);
     }else{
       return this.http.get<IMascota[]>(`${this.baseUrl}/mascotas`);
     }
   }
 
-  constructor(private http:HttpClient) {
-
+  /*buscarMascotaId(id: string): Observable<IMascota> {
+    if (id.length > 0) {
+      return this.http.get<IMascota>(`${this.baseUrl}/mascotas/${id}`);
+    } else {
+      return this.http.get<IMascota>(`${this.baseUrl}/mascotas/`);
+    }
+  }*/
+  mascotaById(id:string):Observable<IMascota>{
+    return this.http.get<IMascota>(`${this.baseUrl}/mascotas/${id}`);
   }
 
- mascotasById(id:string){
+  eliminarMascota(id:string): Observable<IMascota>{
+    return this.http.delete<IMascota>(`${this.baseUrl}/mascotas/${id}`)
+
+  }
+//PROMESAS
+mascotasById(id:string){
     return new Promise(resolve =>{
-      this.http.get<IMascota>(`${this.baseUrl}/mascotas/${id}`)
+      this.http1.get<IMascota[]>(`${this.baseUrl}/mascotas/${id}`)
       .subscribe((data) =>{
         resolve(data);
       })
     })
-  }
-
-  mascotaById(id:string):Observable<IMascota>{
-    return this.http.get<IMascota>(`${this.baseUrl}/mascostas/${id}`);
   }
 
   obtenerAll(){

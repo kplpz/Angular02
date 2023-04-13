@@ -12,12 +12,12 @@ const routes: Routes = [
     children: [
       { path: '', loadChildren: () => import('@modules/home/home.module').then((m) => m.HomeModule) },
       { path: 'directivas', loadChildren: () => import('@modules/directivas/directivas.module').then((m) => m.DirectivasModule) },
-      { path: 'mascotas', loadChildren:() => import('@modules/mascotas/mascotas.module').then((m)=> m.MascotasModule)}
+      { path: 'mascotas', loadChildren: () => import('@modules/mascotas/mascotas.module').then((m) => m.MascotasModule) }
     ]
   },
   // para que redireccione a vacio si viene otra cosa en el path que no sea una ruta
   // { path: '**', redirectTo: 'redireccion', pathMatch: 'full' },
-  {path: '**', component: RedireccionComponent}
+  { path: '**', component: RedireccionComponent }
 ];
 
 @NgModule({

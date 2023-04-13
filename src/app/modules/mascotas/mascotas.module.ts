@@ -5,7 +5,6 @@ import { MascotasRoutingModule } from './mascotas-routing.module';
 import { CardComponent } from './components/card/card.component';
 import { ListarComponent } from './pages/listar/listar.component';
 import { FormsModule } from '@angular/forms';
-import { MascotaComponent } from './pages/mascota/mascota.component';
 
 
 @NgModule({

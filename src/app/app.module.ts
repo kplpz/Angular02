@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { RedireccionComponent } from './modules/redireccion/redireccion.component';
 import { MascotaComponent } from '@modules/mascotas/pages/mascota/mascota.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MascotaComponent } from '@modules/mascotas/pages/mascota/mascota.compon
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     {
