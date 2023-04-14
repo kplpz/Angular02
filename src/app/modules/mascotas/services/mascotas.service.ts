@@ -11,10 +11,9 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class MascotasService {
   private baseUrl:string = environment.baseUrl;
-  
+
   constructor(
-    private http:HttpClient,
-    private http1: HttpClient
+    private http:HttpClient
     ) {
   }
 
@@ -49,7 +48,7 @@ export class MascotasService {
 //PROMESAS
 mascotasById(id:string){
     return new Promise(resolve =>{
-      this.http1.get<IMascota[]>(`${this.baseUrl}/mascotas/${id}`)
+      this.http.get<IMascota[]>(`${this.baseUrl}/mascotas/${id}`)
       .subscribe((data) =>{
         resolve(data);
       })
