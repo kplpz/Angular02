@@ -9,12 +9,12 @@ import { MascotasService } from '@modules/mascotas/services/mascotas.service';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent implements OnInit {
-  mascotas: IMascota[] = []; //EL ARRAY DE MASCOTAS
+  mascotas: IMascota[] = []; //EL ARRAY DE MASCOTAS de la interface
   parametroBuscar: string = ''; //RECOGE DESDE LA VISTA
   mascotasP: IMascota[] = [];
   datosM: string[] = [];
   data: any;
-  datos: any[] = ['Usuario1', 30, true, "{'salario':200}"];
+  datos: any[] = ['Usuario1', 30, true, "salario:200"];
 
 
   //INYECTANDO EL SERVICIO
@@ -30,7 +30,7 @@ export class ListarComponent implements OnInit {
     this.mascotasService.mascotas.subscribe((resp) => {
       this.mascotas = resp;
     });
-    this.obtenerAll();
+    //this.obtenerAll();
     //this.mostrar();
     this.buscar();
   }
@@ -55,30 +55,30 @@ export class ListarComponent implements OnInit {
         //console.log(key,jsonArray[key]);
       }
       const { raza, des, ...datos } = jsonArray;
-      //console.log("raza"+raza)
-      //console.log("descripcion"+des)
-      //console.log("datos"+datos)
+      //console.log("raza "+raza)
+      //console.log("descripcion "+des)
+      //console.log("datos "+datos)
 
       //DESTRUCTURACION
       const [obj1, obj2, obj3, ...otros] = resp
-      // console.log(obj1)
+       console.log(obj1)
       // console.log(obj2)
       // console.log(obj3)
-      // console.log(otros)
+       //console.log(otros)
     });
   }
   mostrar() {
     this.datos.forEach(obj => {
-      console.log("El forEach", obj);
+      console.log("El forEach " +  obj);
     });
 
     console.log('**************');
 
     for (const key in this.datos) {
-      console.log('llaves', key);
+      console.log('llaves ', key);
     }
     for (const iterator of this.datos) {
-      console.log('Iterator' + iterator);
+      console.log('Iterator ' + iterator);
     }
   }
 

@@ -13,6 +13,9 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { RedireccionComponent } from './modules/redireccion/redireccion.component';
 import { MascotaComponent } from '@modules/mascotas/pages/mascota/mascota.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
       provide:LocationStrategy,
       useClass: PathLocationStrategy
     }
+
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
