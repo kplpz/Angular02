@@ -19,6 +19,7 @@ export class ListaComponent implements OnInit {
 
   usuarios: IPlace[] = []
   usuariosString: string[] = []
+  //API SUPERHEROE
   super: ISP[] = []
   sa: string[] = []
   //API POKEMON
@@ -60,6 +61,14 @@ export class ListaComponent implements OnInit {
 
   }
 
+
+  getSuper(){
+    let data
+    for(let i = 1; i< 120; i++){
+      
+    }
+  }
+
   usuarioPH(): void {
     this.placeService.obtenerAll().then(async (resp: any) => {
       resp.forEach((obj: any) => {
@@ -82,7 +91,7 @@ export class ListaComponent implements OnInit {
           image: res.sprites.front_default,
           name: res.name
         }
-        // ESTO VIENE DEL SERVICES
+        // ESTO VIENE DEL SERVICE
         this.datos.push(data)
         this.dataSource = new MatTableDataSource<any>(this.datos)
         this.dataSource.paginator = this.paginator

@@ -9,7 +9,6 @@ import { ISP } from '../interface/superheroes.interface';
 })
 export class PlacehService {
   url = 'https://jsonplaceholder.typicode.com/users'
-  urlPhoto = 'https://jsonplaceholder.typicode.com/photos'
 
   urlSp = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json'
 
