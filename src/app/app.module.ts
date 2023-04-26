@@ -13,7 +13,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { RedireccionComponent } from './modules/redireccion/redireccion.component';
 import { MascotaComponent } from '@modules/mascotas/pages/mascota/mascota.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -28,11 +28,12 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    CoreModule,
-    SharedModule,
-    AppRoutingModule,
-    HttpClientModule
+    BrowserAnimationsModule, //para incorporar animaciones del navefgador
+    CoreModule, //para clases utilizadas por app.module
+    SharedModule, //recursos que se van a utulizar en mas de un modulo
+    AppRoutingModule, // para modulo de rutas
+    HttpClientModule, // para usar HTTPClient
+    ToastrModule.forRoot()
   ],
   providers: [
     {

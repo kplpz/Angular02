@@ -1,0 +1,256 @@
+<div class="d-flex p-2 m-5"></div>
+<div class="container">
+  <h2>Formulario Reactivo</h2>
+  <div class="card border-primary col-md-12">
+    <div class="card-header bg-info"><strong>Datos Generalizados</strong></div>
+    <div class="card-body">
+      <form class="mt-3" (ngSubmit)="guardar()" [formGroup]="formularioGeneral">
+
+        <div class="form-group row">
+          <div class="form-group col-md-6">
+            <input type="text"
+            class="form-control form-control-sm"
+            placeholder="Nombre"
+            formControlName="nombre"
+            [class]="esCampoValido('nombre')" />
+
+            <div class="invalid-feedback">
+              <!-- aqui la validación-->
+              <span *ngIf="formularioGeneral.get('nombre')?.errors?.['required']">Requiere nombre</span>
+              <span *ngIf="formularioGeneral.get('nombre')?.errors?.['pattern']">Nombre no valido</span>
+            </div>
+          </div>
+
+          <!-- INPUT APELLIDO -->
+          <div class="form-group col-md-6">
+            <input type="text"
+            class="form-control form-control-sm"
+            placeholder="Apellido"
+            formControlName="apellido"
+            [class]="esCampoValido('apellido')" />
+            <div class="invalid-feedback">
+              <!-- aqui la validación-->
+              <span *ngIf="formularioGeneral.get('apellido')?.errors?.['required']">Requiere apellido</span>
+              <span *ngIf="formularioGeneral.get('apellido')?.errors?.['pattern']">Apellido no valido</span>
+            </div>
+          </div>
+
+          <!-- aquí EMAIL input-->
+          <div class="form-group form-floating mt-3">
+            <input type="email"
+            class="form-control"
+            formControlName = "correo"
+            [class]="esCampoValido('correo')"
+            />
+            <label class="floatingInput">Correo</label>
+            <div class="invalid-feedback">
+              <span *ngIf="formularioGeneral.get('correo')?.errors?.['required']">Requiere email</span>
+              <span *ngIf="formularioGeneral.get('correo')?.errors?.['pattern']">Email no valido</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESPACIO PARA GENERO -->
+        <div class="form-group row">
+          <div class="form-group col-md-6 mt-1">
+            <label>Genero</label>
+            <div class="form-check form-check-inline m-3">
+              <input type="radio"
+              class="form-check-input"
+              formControlName = "genero"
+              value="Mujer"
+              [class]="esCampoValido('genero')"
+              />
+            <label class="form-check-label">Mujer</label>
+            </div>
+            <div class="form-check form-check-inline m-3">
+              <input type="radio"
+            class="form-check-input"
+            formControlName = "genero"
+            value="Hombre"
+            [class]="esCampoValido('genero')"
+            />
+            <label class="form-check-label">Hombre</label>
+            </div>
+            <div class="invalid-feedback">
+              <span *nfIf="formularioGeneral.get('genero')?.errors?.['required']">Requiere el genero</span>
+            </div>
+          </div>
+
+
+        <!-- ESPACIO PARA CALENDARIO/ TIPO DE DATO FECHA -->
+        <div class="form-group col-md-6 mt-3">
+          <input type="date"
+              class="form-control"
+              placeholder="dd-mmm-yyyy"
+              formControlName = "fecha"
+              [class]="esCampoValido('fecha')"
+              />
+          <div class="invalid-feedback">
+            <span *nfIf="formularioGeneral.get('fecha')?.errors?.['required']">Requiere una fecha</span>
+            <span *nfIf="formularioGeneral.get('fecha')?.errors?.['pattern']">Requiere una fecha valida</span>
+          </div>
+        </div>
+
+      </div>
+
+        <!-- ESPACIO PARA UN TEXAREA -->
+        <div class="form-group col-md-6 mt-3">
+          <textarea type="date"
+              class="form-control"
+              formControlName = "mensaje"
+              placeholder="Mensaje"
+              [class]="esCampoValido('mensaje')">
+          </textarea>
+          <!-- <label class="floatingInput">Mensaje</label> -->
+          <div class="invalid-feedback">
+            <span *nfIf="formularioGeneral.get('mensaje')?.errors?.['minlength']">Tamaño mínimo</span>
+            <span *nfIf="formularioGeneral.get('mensaje')?.errors?.['maxlength']">Tamaño maximo</span>
+          </div>
+        </div>
+
+        <!-- ESPACIO PARA COMBOBOX -->
+        <div class="form-group row">
+          <div class="form-group col-md-4 mt-1">
+            <label>Departamento</label>
+            <select
+            class="form-control form-select"
+            formControlName="departamento"
+            [class]="esCampoValido('departamento')"
+            (ngModelChange)="deptoChange($event)">
+            <option value="">Seleccione</option>
+            <!-- llenando el combo -->
+            <option *ngFor="let dpt of departamentos" [ngValue]="dpt.codigo">{{dpt.na2}}</option>
+          </select>
+            <div class="invalid-feedback">
+              <span *nfIf="formularioGeneral.get('departamento')?.errors?.['required']">
+                Se requiere departamento</span>
+            </div>
+          </div>
+
+
+        <!-- COMBO PARA MUNICIPIOS -->
+          <div class="form-group col-md-4 mt-1">
+            <label>Municipio</label>
+            <select
+            class="form-control form-select"
+            formControlName="municipio"
+            [class]="esCampoValido('municipio')"
+            (ngModelChange)="muniChange($event)">
+            <option value="">Seleccione</option>
+            <!-- llenando el combo -->
+            <option *ngFor="let muni of municipios" [ngValue]="muni.codigo">{{muni.nam}}</option>
+          </select>
+            <div class="invalid-feedback">
+              <span *nfIf="formularioGeneral.get('municipio')?.errors?.['required']">
+                Se requiere municipio</span>
+            </div>
+          </div>
+
+          <!-- COMBO PARA CANTONES -->
+          <div class="form-group col-md-4 mt-1">
+            <label>Urbana Canton</label>
+            <select
+            class="form-control form-select"
+            formControlName="canton"
+            [class]="esCampoValido('canton')">
+            <option value="">Seleccione</option>
+            <!-- llenando el combo -->
+            <option *ngFor="let c of cantones" [ngValue]="c.codigo">{{c.nam}}</option>
+          </select>
+            <div class="invalid-feedback">
+              <span *nfIf="formularioGeneral.get('canton')?.errors?.['required']">
+                Se requiere canton</span>
+            </div>
+          </div>
+
+          <!-- CIERRE DE DIV COMBOBOX -->
+        </div>
+
+        <!-- CAMPOS UBICACION Y DIRECCION -->
+        <div class="form-group row mt-2" formControlName="direccion">
+          <div class="form-group col-md-6">
+            <input type="text"
+              class="form-control form-control-sm"
+              placeholder="Ubicacion"
+              formControlName = "ubicacion"
+              [class]="noRequiereValor('direccion.ubicacion')" />
+          </div>
+          <div class="form-group col-md-6">
+            <input type="text"
+              class="form-control form-control-sm"
+              placeholder="Colonia/Barrio"
+              formControlName = "colonia"
+              [class]="noRequiereValor('direccion.colonia')" />
+          </div>
+        </div>
+
+        <!-- ESPACIO PARA CHECKBOX -->
+        <div class="form-group row">
+          <div class="form-group col-md-6">
+            <label>Colores Favoritos : </label>
+            <div class="form-check form-check-inline m-3">
+            <input type="checkbox"
+              class="form-check-input"
+              formControlName = "verde"
+              [class]="noRequiereValor('verde')" />
+              <label class="form-check-label">Verde</label>
+            </div>
+            <!-- segundo check -->
+            <div class="form-check form-check-inline m-3">
+              <input type="checkbox"
+                class="form-check-input"
+                formControlName = "rojo"
+                [class]="noRequiereValor('rojo')" />
+                <label class="form-check-label">Rojo</label>
+              </div>
+              <!-- otro check -->
+              <div class="form-check form-check-inline m-3">
+                <input type="checkbox"
+                  class="form-check-input"
+                  formControlName = "negro"
+                  [class]="noRequiereValor('negro')" />
+                  <label class="form-check-label">Negro</label>
+                </div>
+          </div>
+
+        <!-- ESPACIO PARA BOTON DE ESTADO -->
+        <div class="form-check form-switch col-md-6 mt-3">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Estado</label>
+          <input
+          class="form-check-input"
+          type="checkbox"
+          formControlName="estado"
+          [class]="esCampoValido('estado')"  />
+        </div>
+
+        </div>
+
+        <!-- INPUT PARA SALARIO -->
+        <div class="form-group col-md-4">
+          <label class="form-label mt-4">Salario</label>
+          <div class="input-group">
+            <div class="input-group mb-3">
+              <span class="input-group-text">$</span>
+              <input type="text"
+            class="form-control"
+            formControlName = "salario"
+            [class]="esCampoValido('salario')"
+            />
+            <div class="invalid-feedback">
+              <span *ngIf="formularioGeneral.get('salario')?.errors?.['required']">Requiere un salario</span>
+              <span *ngIf="formularioGeneral.get('salario')?.errors?.['pattern']">Requiere valor numerico</span>
+              <span *nfIf="formularioGeneral.get('salario')?.errors?.['min']">Salario minimo 300</span>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-sm btn-outline-info mt-sm-2">
+          <i class="bi bi-database-add"></i>Guardar
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { IMascota } from '@modules/mascotas/interface/mascotas.interface';
-import { MascotasService } from '@modules/mascotas/services/mascotas.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +9,13 @@ import { MascotasService } from '@modules/mascotas/services/mascotas.service';
 })
 export class CardComponent{
   @Input() obj!:IMascota
+  @Output()
+  eliminar = new EventEmitter<IMascota>();
 
+
+  eliminarPets(ob:IMascota){
+this.eliminar.emit(ob) //esto se usara en el componente padre se usara el id
+  }
 }
 
 

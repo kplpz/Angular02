@@ -45,6 +45,10 @@ export class MascotasService {
     return this.http.delete<IMascota>(`${this.baseUrl}/mascotas/${id}`)
 
   }
+  borrarMascota(id:IMascota): Observable<IMascota>{
+    return this.http.delete<IMascota>(`${this.baseUrl}/mascotas/${id}`)
+
+  }
 //PROMESAS
 mascotasById(id:string){
     return new Promise(resolve =>{

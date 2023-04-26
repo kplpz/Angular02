@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RedireccionComponent } from '@modules/redireccion/redireccion.component';
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
+import { SharedModule } from '@shared/shared.module';
+import { FormularioComponent } from '@shared/formulario/formulario.component';
 
 //matriz de objetos para las rutas
 const routes: Routes = [
@@ -13,12 +15,13 @@ const routes: Routes = [
       { path: '', loadChildren: () => import('@modules/home/home.module').then((m) => m.HomeModule) },
       { path: 'directivas', loadChildren: () => import('@modules/directivas/directivas.module').then((m) => m.DirectivasModule) },
       { path: 'mascotas', loadChildren: () => import('@modules/mascotas/mascotas.module').then((m) => m.MascotasModule) },
-      { path: 'place', loadChildren: () => import('@modules/rm/rm.module').then((m) => m.RmModule) }
+      { path: 'place', loadChildren: () => import('@modules/rm/rm.module').then((m) => m.RmModule) },
+      { path: 'formulario', component: FormularioComponent, title:'Formulario' }
     ]
   },
   // para que redireccione a vacio si viene otra cosa en el path que no sea una ruta
   // { path: '**', redirectTo: 'redireccion', pathMatch: 'full' },
-  { path: '**', component: RedireccionComponent, title:'Error404' }
+  { path: '**', component: RedireccionComponent, title: 'Error404' }
 ];
 
 @NgModule({
