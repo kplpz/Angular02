@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RedireccionComponent } from '@modules/redireccion/redireccion.component';
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
-import { SharedModule } from '@shared/shared.module';
 import { FormularioComponent } from '@shared/formulario/formulario.component';
 
 //matriz de objetos para las rutas

@@ -7,8 +7,10 @@
     </div>
   </ng-container>
   <ng-template #divMascota>
+    <app-nuevo  [leyenda]="'Editar'"   class="a"></app-nuevo>
     <button mat-button class="btn btn-success m-2" (click)="regresar()"><i class="bi bi-backspace"></i></button>
     <button mat-button class="btn btn-danger a" (click)="eliminar()">Eliminar</button> <!-- agregado boton eliminar -->
+    <hr>
     <div fxLayout="row" fxLayout.xs="column">
       <div fxFlex="50">
         <h1>
@@ -29,6 +31,7 @@
         <p>{{mascota.ejercicio}}</p>
         <p>{{mascota.nutricion}}</p>
         <br>
+
 
       </div>
     </div>

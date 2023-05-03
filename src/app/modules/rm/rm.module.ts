@@ -25,10 +25,10 @@ const OPTIONS = {
     RmRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatTableModule
+  //   MatFormFieldModule,
+  //  MatInputModule,
+  //   MatPaginatorModule,
+  //   MatTableModule
   ],
   providers:[
     {

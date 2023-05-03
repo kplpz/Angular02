@@ -45,8 +45,13 @@ export class MascotasService {
     return this.http.delete<IMascota>(`${this.baseUrl}/mascotas/${id}`)
 
   }
-  borrarMascota(id:IMascota): Observable<IMascota>{
-    return this.http.delete<IMascota>(`${this.baseUrl}/mascotas/${id}`)
+  // borrarMascota(id:IMascota): Observable<IMascota>{
+  //   return this.http.delete<IMascota>(`${this.baseUrl}/mascotas/${id}`)
+
+  // }
+
+  borrarMascota(p:IMascota): any{
+    return this.http.delete(`${this.baseUrl}/mascotas/${p.id}`)
 
   }
 //PROMESAS
@@ -67,4 +72,18 @@ mascotasById(id:string){
       })
     })
   }
+
+
+  /************AGREGADO*****************/
+
+  nuevaMascota(p:IMascota){
+    return this.http.post(`${this.baseUrl}/mascotas`,p)
+  }
+  editarMascota(p:IMascota){
+    console.log(p)
+    const url = `${this.baseUrl}/mascotas/${p.id}`
+    return this.http.put(url,p);
+
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMascota } from '@modules/mascotas/interface/mascotas.interface';
 import { MascotasService } from '@modules/mascotas/services/mascotas.service';
@@ -21,11 +21,7 @@ export class MascotaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params
-      .pipe(switchMap(({ id }) => this.mascotasService.mascotaById(id)))
-      .subscribe((resp: any) => {
-        this.mascota = resp;
-      });
+    this.mostrarT()
   }
 
   regresar() {
@@ -58,6 +54,13 @@ export class MascotaComponent implements OnInit {
         Swal.fire('Cancelado', 'Proceso cancelado', 'error')
       }
     })
+  }
+  mostrarT() {
+    this.activatedRoute.params
+      .pipe(switchMap(({ id }) => this.mascotasService.mascotaById(id)))
+      .subscribe((resp: any) => {
+        this.mascota = resp;
+      });
   }
 
   getMascota(): void {

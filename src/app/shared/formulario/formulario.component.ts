@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPais } from '@shared/interfaces/pais.interface';
 import { UbicacionPaisService } from '@shared/services/ubicacion-pais.service';
 import { map } from 'rxjs';
@@ -74,11 +74,13 @@ export class FormularioComponent implements OnInit {
         ubicacion: ['',[]],
         colonia:['',[Validators.nullValidator]],
       }),
-      gustos :this.fb.group({
+      gustos : this.fb.group({
         verde: ['',[]],
         rojo:['',[]],
         negro:['',[]],
       }),
+      estado:['',[]],
+      pasatiempos: this.fb.array([]),
     })
   }
 
@@ -116,5 +118,17 @@ export class FormularioComponent implements OnInit {
 
   noRequiereValor(campo:string):string{
     return this.formularioGeneral.get(campo)?.value ? 'is-valid' : ''
+  }
+
+  get pasatiempos(){
+    return this.formularioGeneral.get('pasatiempos') as FormArray
+  }
+
+  agregarPasatiempo(){
+    this.pasatiempos.push(this.fb.control('',Validators.required))
+  }
+
+  borrarPasatiempo(i: number){
+    this.pasatiempos.removeAt(i)
   }
 }

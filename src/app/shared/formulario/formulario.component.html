@@ -73,7 +73,7 @@
             <label class="form-check-label">Hombre</label>
             </div>
             <div class="invalid-feedback">
-              <span *nfIf="formularioGeneral.get('genero')?.errors?.['required']">Requiere el genero</span>
+              <span *ngIf="formularioGeneral.get('genero')?.errors?.['required']">Requiere el genero</span>
             </div>
           </div>
 
@@ -87,8 +87,8 @@
               [class]="esCampoValido('fecha')"
               />
           <div class="invalid-feedback">
-            <span *nfIf="formularioGeneral.get('fecha')?.errors?.['required']">Requiere una fecha</span>
-            <span *nfIf="formularioGeneral.get('fecha')?.errors?.['pattern']">Requiere una fecha valida</span>
+            <span *ngIf="formularioGeneral.get('fecha')?.errors?.['required']">Requiere una fecha</span>
+            <span *ngIf="formularioGeneral.get('fecha')?.errors?.['pattern']">Requiere una fecha valida</span>
           </div>
         </div>
 
@@ -104,8 +104,8 @@
           </textarea>
           <!-- <label class="floatingInput">Mensaje</label> -->
           <div class="invalid-feedback">
-            <span *nfIf="formularioGeneral.get('mensaje')?.errors?.['minlength']">Tamaño mínimo</span>
-            <span *nfIf="formularioGeneral.get('mensaje')?.errors?.['maxlength']">Tamaño maximo</span>
+            <span *ngIf="formularioGeneral.get('mensaje')?.errors?.['minlength']">Tamaño mínimo</span>
+            <span *ngIf="formularioGeneral.get('mensaje')?.errors?.['maxlength']">Tamaño maximo</span>
           </div>
         </div>
 
@@ -123,7 +123,7 @@
             <option *ngFor="let dpt of departamentos" [ngValue]="dpt.codigo">{{dpt.na2}}</option>
           </select>
             <div class="invalid-feedback">
-              <span *nfIf="formularioGeneral.get('departamento')?.errors?.['required']">
+              <span *ngIf="formularioGeneral.get('departamento')?.errors?.['required']">
                 Se requiere departamento</span>
             </div>
           </div>
@@ -142,7 +142,7 @@
             <option *ngFor="let muni of municipios" [ngValue]="muni.codigo">{{muni.nam}}</option>
           </select>
             <div class="invalid-feedback">
-              <span *nfIf="formularioGeneral.get('municipio')?.errors?.['required']">
+              <span *ngIf="formularioGeneral.get('municipio')?.errors?.['required']">
                 Se requiere municipio</span>
             </div>
           </div>
@@ -159,7 +159,7 @@
             <option *ngFor="let c of cantones" [ngValue]="c.codigo">{{c.nam}}</option>
           </select>
             <div class="invalid-feedback">
-              <span *nfIf="formularioGeneral.get('canton')?.errors?.['required']">
+              <span *ngIf="formularioGeneral.get('canton')?.errors?.['required']">
                 Se requiere canton</span>
             </div>
           </div>
@@ -168,7 +168,7 @@
         </div>
 
         <!-- CAMPOS UBICACION Y DIRECCION -->
-        <div class="form-group row mt-2" formControlName="direccion">
+        <div class="form-group row mt-2" formGroupName="direccion">
           <div class="form-group col-md-6">
             <input type="text"
               class="form-control form-control-sm"
@@ -186,8 +186,8 @@
         </div>
 
         <!-- ESPACIO PARA CHECKBOX -->
-        <div class="form-group row">
-          <div class="form-group col-md-6">
+        <div class="form-group row" >
+          <div class="form-group col-md-6 mt-1" formGroupName="gustos">
             <label>Colores Favoritos : </label>
             <div class="form-check form-check-inline m-3">
             <input type="checkbox"
@@ -214,15 +214,15 @@
                 </div>
           </div>
 
-        <!-- ESPACIO PARA BOTON DE ESTADO -->
-        <div class="form-check form-switch col-md-6 mt-3">
-          <label class="form-check-label" for="flexSwitchCheckDefault">Estado</label>
-          <input
-          class="form-check-input"
-          type="checkbox"
-          formControlName="estado"
-          [class]="esCampoValido('estado')"  />
-        </div>
+          <!-- ESPACIO PARA BOTON DE ESTADO -->
+          <div class="form-check form-switch col-md-6 mt-3">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Estado</label>
+            <input
+            class="form-check-input"
+            type="checkbox"
+            formControlName="estado"
+            [class]="esCampoValido('estado')"  />
+          </div>
 
         </div>
 
@@ -240,9 +240,41 @@
             <div class="invalid-feedback">
               <span *ngIf="formularioGeneral.get('salario')?.errors?.['required']">Requiere un salario</span>
               <span *ngIf="formularioGeneral.get('salario')?.errors?.['pattern']">Requiere valor numerico</span>
-              <span *nfIf="formularioGeneral.get('salario')?.errors?.['min']">Salario minimo 300</span>
+              <span *ngIf="formularioGeneral.get('salario')?.errors?.['min']">Salario minimo 300</span>
             </div>
             </div>
+          </div>
+        </div>
+
+        <!-- PASATIEMPOS -->
+        <hr>
+        <div class="row">
+          <div class="col">
+            <table class="table table-hover">
+              <thead>
+                <tr class="table-dark">
+                  <th>N</th>
+                  <th>Pasatiempos</th>
+                  <th>Quitar</th>
+                </tr>
+              </thead>
+              <tbody formArrayName="pasatiempos">
+                <tr *ngFor="let control of pasatiempos.controls; let i=index">
+                  <td>{{i+1}}</td>
+                  <td>
+                    <input type="text" class="form-control"
+                    [formControlName]="i"  />
+                  </td>
+                  <td>
+                    <button class="btn btn-danger" (click)="borrarPasatiempo(i)">Quitar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="button" class="btn btn-primary mt-3 mb-5 btn-block"
+            (click)="agregarPasatiempo()">
+              Agrear
+            </button>
           </div>
         </div>
 
@@ -253,4 +285,6 @@
       </form>
     </div>
   </div>
+  <hr>
+  <p>Form value: {{ formularioGeneral.value | json }}</p>
 </div>

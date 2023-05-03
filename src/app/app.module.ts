@@ -23,8 +23,8 @@ import { ToastrModule } from 'ngx-toastr';
     HeaderComponent,
     FooterComponent,
     SkeletonComponent,
-    RedireccionComponent,
-    MascotaComponent
+    RedireccionComponent
+    // MascotaComponent
   ],
   imports: [
     BrowserModule,
