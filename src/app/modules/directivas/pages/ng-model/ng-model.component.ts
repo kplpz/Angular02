@@ -13,6 +13,6 @@ export class NgModelComponent {
 
   formatNombre(): void {
     this.nombre = this.nombre.toLowerCase();
-    this.nombre2 = this.nombre2.toUpperCase();
+    this.nombre2 = this.nombre.toUpperCase();
   }
 }
