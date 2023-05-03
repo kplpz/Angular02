@@ -1,205 +1,181 @@
+<!-- [ngModel]="mascota!=null ? mascota.raza : ''"  -->
 <div>
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMascota">
     {{leyenda}}
   </button>
 </div>
 <!-- Modal -->
-<div class="modal modal-fullscreen-xl-down fade" id="modalMascota" tabindex="-1"
-aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal modal-fullscreen-xl-down fade" id="modalMascota" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
 
-<form (ngSubmit)="guardar()"
-[formGroup]="formMascota" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Mascotas</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-        (click)="mostrar()"></button>
-      </div>
-
-      <div class="modal-body">
-
-        <!-- PARA RAZA -->
-        <div  class="form-group row m-4">
-          <select
-          class="form-control form-select"
-          formControlName = "raza"
-          [class]="esCampoValido('raza')"
-          [ngModel]="mascota!=null ? mascota.raza : ''"
-          >
-          <option value="">Seleccione Raza</option>
-          <option *ngFor="let raza of razas" [ngValue]="raza.raza" >{{raza.raza}}</option>
-        </select>
-        <div class="invalid-feedback">
-          <span *ngIf="formMascota.get('raza')?.errors?.['required']">
-            Campo requerido
-          </span>
-        </div>
+  <form (ngSubmit)="guardar()" [formGroup]="formMascota">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Mascotas</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="mostrar()"></button>
         </div>
 
-        <!-- PARA ORIGEN -->
-        <div  class="form-group row m-4">
-          <select
-          class="form-control form-select"
-          formControlName = "origen"
-          [class]="esCampoValido('origen')"
-          [ngModel]="mascota!=null ? mascota.raza : ''">
-          <option value="">Seleccione Origen</option>
-          <option *ngFor="let origen of origenes" [ngValue]="origen.origen">{{origen.origen}}</option>
-        </select>
-        <div class="invalid-feedback">
-          <span *ngIf="formMascota.get('origen')?.errors?.['required']">
-            Campo requerido
-          </span>
-        </div>
-        </div>
+        <div class="modal-body">
 
-        <!-- PARA GUARDIAN /radio-->
-        <div class="form-group row">
-          <div class="form-group col-md-6 mt-1">
-            <label>Guardian</label>
-            <!-- radio1 -->
-            <div class="form-check form-check-inline m-3">
-              <input type="radio"
-              class="form-check-input"
-              formControlName="guardian"
-              value="Si"
-              [class]="esCampoValido('guardian')"
-              [ngModel]="mascota!=null ? mascota.raza : ''" />
-              <label class="form-check-label">Si</label>
-            </div>
+          <!-- PARA RAZA -->
+          <div class="form-group row m-4">
+            <select class="form-control form-select" formControlName="raza" [class]="esCampoValido('raza')"
+              [ngModel]="mascota!=null ? mascota.raza : '' ">
 
-            <!-- radio2 -->
-            <div class="form-check form-check-inline m-3">
-              <input type="radio"
-              class="form-check-input"
-              formControlName="guardian"
-              value="No"
-              [class]="esCampoValido('guardian')"
-              [ngModel]="mascota!=null ? mascota.raza : ''" />
-              <label class="form-check-label">No</label>
-            </div>
+              <option value="">Seleccione Raza</option>
+              <option *ngFor="let raza of razas" [ngValue]="raza.raza">{{raza.raza}}</option>
+            </select>
+
             <div class="invalid-feedback">
-              <span *ngIf="formMascota.get('guardian')?.errors?.['required']">
+              <span *ngIf="formMascota.get('raza')?.errors?.['required']">
                 Campo requerido
               </span>
             </div>
           </div>
 
-        <!-- PARA PESO -->
-        <div class="form-group col-md-6 mt-3">
-          <input type="text"
-          class="form-control"
-          placeholder="Peso en kg"
-          formControlName="peso"
-          [class]="esCampoValido('peso')" />
-          <div class="invalid-feedback">
-            <span *ngIf="formMascota.get('peso')?.errors?.['required']">
-              Requiere un peso
-            </span>
-            <span *ngIf="formMascota.get('peso')?.errors?.['pattern']">
-              Requiere numero
-            </span>
+          <!-- PARA ORIGEN -->
+          <div class="form-group row m-4">
+            <select class="form-control form-select" formControlName="origen" [class]="esCampoValido('origen')"
+              [ngModel]="mascota!=null ? mascota.origen : ''">
+
+              <option value="">Seleccione Origen</option>
+              <option *ngFor="let origen of origenes" [ngValue]="origen.origen">{{origen.origen}}</option>
+            </select>
+
+            <div class="invalid-feedback">
+              <span *ngIf="formMascota.get('origen')?.errors?.['required']">
+                Campo requerido
+              </span>
+            </div>
+
           </div>
+
+          <!-- PARA GUARDIAN /radio-->
+          <div class="form-group row">
+            <div class="form-group col-md-6 mt-1">
+              <label>Guardian</label>
+              <!-- radio1 -->
+              <div class="form-check form-check-inline m-3">
+                <input type="radio" class="form-check-input" formControlName="guardian" value="Si"
+                  [class]="esCampoValido('guardian')" [ngModel]="mascota!=null ? mascota.guardian : ''" />
+                <label class="form-check-label">Si</label>
+              </div>
+
+              <!-- radio2 -->
+              <div class="form-check form-check-inline m-3">
+                <input type="radio" class="form-check-input" formControlName="guardian" value="No"
+                  [class]="esCampoValido('guardian')" [ngModel]="mascota!=null ? mascota.guardian : ''" />
+                <label class="form-check-label">No</label>
+              </div>
+              <div class="invalid-feedback">
+                <span *ngIf="formMascota.get('guardian')?.errors?.['required']">
+                  Campo requerido
+                </span>
+              </div>
+            </div>
+
+            <!-- PARA PESO -->
+            <div class="form-group col-md-6 mt-3">
+              <input type="text" class="form-control" placeholder="Peso en kg" formControlName="peso"
+                [class]="esCampoValido('peso')" [ngModel]="mascota!=null ? mascota.peso : ''" />
+
+              <div class="invalid-feedback">
+                <span *ngIf="formMascota.get('peso')?.errors?.['required']">
+                  Requiere un peso
+                </span>
+                <span *ngIf="formMascota.get('peso')?.errors?.['pattern']">
+                  Requiere numero
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- LA DESCRIPCION -->
+          <div class="form-group form-floating mt-3">
+            <textarea row="4" class="form-control" placeholder="Descripcion" formControlName="des"
+              [class]="esCampoValido('des')" [ngModel]="mascota!=null ? mascota.des : ''"></textarea>
+            <label class="floatingInput">Descripcion</label>
+
+            <div class="invalid-feedback">
+              <span *ngIf="formMascota.get('des')?.errors?.['required']">
+                Campo requerido
+              </span>
+              <span *ngIf="formMascota.get('des')?.errors?.['minLength']">
+                Tamaño minimo
+                {{ formMascota.get('des')?.errors?.['minLength']?.requiredLength }}
+              </span>
+            </div>
+
+          </div>
+
+          <!-- SALUD -->
+          <div class="form-group form-floating mt-3">
+            <textarea row="4" class="form-control" placeholder="Salud" formControlName="salud"
+              [class]="esCampoValido('salud')" [ngModel]="mascota!=null ? mascota.salud : ''"></textarea>
+            <label class="floatingInput">Salud</label>
+
+            <div class="invalid-feedback">
+              <span *ngIf="formMascota.get('salud')?.errors?.['required']">
+                Campo requerido
+              </span>
+              <span *ngIf="formMascota.get('salud')?.errors?.['minLength']">
+                Tamaño minimo
+                {{ formMascota.get('salud')?.errors?.['minLength']?.requiredLength }}
+              </span>
+            </div>
+
+          </div>
+
+          <!-- EJERCICIO -->
+          <div class="form-group form-floating mt-3">
+            <textarea row="4" class="form-control" placeholder="Ejercicio" formControlName="ejercicio"
+              [class]="esCampoValido('ejercicio')" [ngModel]="mascota!=null ? mascota.ejercicio : ''"></textarea>
+            <label class="floatingInput">Ejercicio</label>
+
+            <div class="invalid-feedback">
+              <span *ngIf="formMascota.get('ejercicio')?.errors?.['required']">
+                Campo requerido
+              </span>
+              <span *ngIf="formMascota.get('ejercicio')?.errors?.['minLength']">
+                Tamaño minimo
+                {{ formMascota.get('ejercicio')?.errors?.['minLength']?.requiredLength }}
+              </span>
+            </div>
+
+          </div>
+
+          <!-- NUTRICION -->
+          <div class="form-group form-floating mt-3">
+            <textarea row="4" class="form-control" placeholder="Nutricion" formControlName="nutricion"
+              [class]="esCampoValido('nutricion')" [ngModel]="mascota!=null ? mascota.nutricion : ''"></textarea>
+            <label class="floatingInput">Nutricion</label>
+
+            <div class="invalid-feedback">
+              <span *ngIf="formMascota.get('nutricion')?.errors?.['required']">
+                Campo requerido
+              </span>
+              <span *ngIf="formMascota.get('nutricion')?.errors?.['minLength']">
+                Tamaño minimo
+                {{ formMascota.get('nutricion')?.errors?.['minLength']?.requiredLength }}
+              </span>
+            </div>
+
+          </div>
+
         </div>
 
-      </div>
-
-
-        <!-- LA DESCRIPCION -->
-        <div class="form-group form-floating mt-3">
-          <textarea
-          row="4"
-          class="form-control"
-          placeholder="Descripcion"
-          formControlName="des"
-          [class]="esCampoValido('des')"
-          [ngModel]="mascota!=null ? mascota.raza : ''"></textarea>
-          <label class="floatingInput">Descripcion</label>
-          <div class="invalid-feedback">
-            <span *ngIf="formMascota.get('des')?.errors?.['required']">
-              Campo requerido
-            </span>
-            <span *ngIf="formMascota.get('des')?.errors?.['minLength']">
-              Tamaño minimo
-              {{ formMascota.get('des')?.errors?.['minLength']?.requiredLength }}
-            </span>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="mostrar()">Cerrar</button>
+          <button type="submit" class="btn btn-sm btn-outline-info mt-sm-2">
+            <i class="bi bi-database-add"></i>Guardar</button>
         </div>
-
-        <!-- SALUD -->
-        <div class="form-group form-floating mt-3">
-          <textarea
-          row="4"
-          class="form-control"
-          placeholder="Salud"
-          formControlName="salud"
-          [class]="esCampoValido('salud')"
-          [ngModel]="mascota!=null ? mascota.raza : ''"></textarea>
-          <label class="floatingInput">Salud</label>
-          <div class="invalid-feedback">
-            <span *ngIf="formMascota.get('salud')?.errors?.['required']">
-              Campo requerido
-            </span>
-            <span *ngIf="formMascota.get('salud')?.errors?.['minLength']">
-              Tamaño minimo
-              {{ formMascota.get('salud')?.errors?.['minLength']?.requiredLength }}
-            </span>
-          </div>
-        </div>
-
-        <!-- EJERCICIO -->
-        <div class="form-group form-floating mt-3">
-          <textarea
-          row="4"
-          class="form-control"
-          placeholder="Ejercicio"
-          formControlName="ejercicio"
-          [class]="esCampoValido('ejercicio')"
-          [ngModel]="mascota!=null ? mascota.raza : ''"></textarea>
-          <label class="floatingInput">Ejercicio</label>
-          <div class="invalid-feedback">
-            <span *ngIf="formMascota.get('ejercicio')?.errors?.['required']">
-              Campo requerido
-            </span>
-            <span *ngIf="formMascota.get('ejercicio')?.errors?.['minLength']">
-              Tamaño minimo
-              {{ formMascota.get('ejercicio')?.errors?.['minLength']?.requiredLength }}
-            </span>
-          </div>
-        </div>
-
-        <!-- NUTRICION -->
-        <div class="form-group form-floating mt-3">
-          <textarea
-          row="4"
-          class="form-control"
-          placeholder="Nutricion"
-          formControlName="nutricion"
-          [class]="esCampoValido('nutricion')"
-          [ngModel]="mascota!=null ? mascota.raza : ''"></textarea>
-          <label class="floatingInput">Nutricion</label>
-          <div class="invalid-feedback">
-            <span *ngIf="formMascota.get('nutricion')?.errors?.['required']">
-              Campo requerido
-            </span>
-            <span *ngIf="formMascota.get('nutricion')?.errors?.['minLength']">
-              Tamaño minimo
-              {{ formMascota.get('nutricion')?.errors?.['minLength']?.requiredLength }}
-            </span>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-        (click)="mostrar()">Cerrar</button>
-        <button type="submit" class="btn btn-sm btn-outline-info mt-sm-2">
-          <i class="bi bi-database-add"></i>Guardar</button>
       </div>
     </div>
-  </div>
-</form>
+  </form>
 
 </div>

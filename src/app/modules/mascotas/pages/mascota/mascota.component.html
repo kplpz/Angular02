@@ -7,7 +7,7 @@
     </div>
   </ng-container>
   <ng-template #divMascota>
-    <app-nuevo  [leyenda]="'Editar'"   class="a"></app-nuevo>
+    <app-nuevo [leyenda]="'Editar'" [mascota]="mascota"  class="a"></app-nuevo>
     <button mat-button class="btn btn-success m-2" (click)="regresar()"><i class="bi bi-backspace"></i></button>
     <button mat-button class="btn btn-danger a" (click)="eliminar()">Eliminar</button> <!-- agregado boton eliminar -->
     <hr>

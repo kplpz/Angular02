@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IPlace } from '@modules/rm/interface/placeh.interface';
 import { ISP } from '@modules/rm/interface/superheroes.interface';
 import { PlacehService } from '@modules/rm/service/placeh.service';
-import { MatTableDataSource } from '@angular/material/table';
+// import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 
@@ -25,7 +25,7 @@ export class ListaComponent implements OnInit {
   //API POKEMON
   pokemons = []
   datos: any = []
-  dataSource = new MatTableDataSource<any>(this.datos);
+  // dataSource = new MatTableDataSource<any>(this.datos);
 
 
   constructor(
@@ -37,7 +37,7 @@ export class ListaComponent implements OnInit {
     //throw new Error('Method not implemented.');
     this.usuarioPH()
     //this.supp()
-    this.getPokemons()
+    // this.getPokemons()
   }
 
 
@@ -57,16 +57,6 @@ export class ListaComponent implements OnInit {
       let array = JSON.parse(this.sa[0])
       console.log(array.name)
     })
-
-
-  }
-
-
-  getSuper(){
-    let data
-    for(let i = 1; i< 120; i++){
-      
-    }
   }
 
   usuarioPH(): void {
@@ -81,40 +71,40 @@ export class ListaComponent implements OnInit {
   }
 
   // PROBANDO API POKEMON V2
-  getPokemons() {
-    let data
+  // getPokemons() {
+  //   let data
 
-    for (let i = 1; i < 150; i++) {
-      this.placeService.getPokemon(i).subscribe(res => {
-        data = {
-          position: i,
-          image: res.sprites.front_default,
-          name: res.name
-        }
-        // ESTO VIENE DEL SERVICE
-        this.datos.push(data)
-        this.dataSource = new MatTableDataSource<any>(this.datos)
-        this.dataSource.paginator = this.paginator
-      },
-        err => {
-          console.log(err)
-        })
-    }
-  }
+  //   for (let i = 1; i < 150; i++) {
+  //     this.placeService.getPokemon(i).subscribe(res => {
+  //       data = {
+  //         position: i,
+  //         image: res.sprites.front_default,
+  //         name: res.name
+  //       }
+  //       // ESTO VIENE DEL SERVICE
+  //       this.datos.push(data)
+  //       this.dataSource = new MatTableDataSource<any>(this.datos)
+  //       this.dataSource.paginator = this.paginator
+  //     },
+  //       err => {
+  //         console.log(err)
+  //       })
+  //   }
+  // }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
 
-  getRow(row: any) {
-    //console.log(row);
-    this.router.navigateByUrl(`/pokeDetail/${row.position}`)
-  }
+  // getRow(row: any) {
+  //   //console.log(row);
+  //   this.router.navigateByUrl(`/pokeDetail/${row.position}`)
+  // }
 
 }
 

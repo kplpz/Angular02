@@ -31,7 +31,7 @@ export class NuevoComponent implements OnInit {
     { "raza": "Afgano" },
     { "raza": "Bóxer" },
     { "raza": "King Charles Spaniel" },
-    { "raza": "Sabueso Bávaro de Montaña" }
+    { "raza": "Sabueso Bávaro de Montaña" },
   ];
   origenes = [
     { "origen": "África" },
@@ -124,7 +124,6 @@ export class NuevoComponent implements OnInit {
 
   editando() {
     this.mascota.raza = this.formMascota.controls['raza'].value;
-    console.log(this.mascota.raza)
     this.mascota.origen = this.formMascota.controls['origen'].value;
     this.mascota.guardian = this.formMascota.controls['guardian'].value;
     this.mascota.peso = this.formMascota.controls['peso'].value;
