@@ -1,0 +1,13 @@
+.lista{
+ width: 100%;
+ margin: auto;
+ margin-top: 2em;
+}
+
+.cards{
+  display: grid;
+  //para crear cuantas columnas pueda siguiendo la regla de minimos y maxi
+  grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+  gap: 0.8em;
+  margin-top: 2em;
+}
