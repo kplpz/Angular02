@@ -14,6 +14,7 @@ import { RedireccionComponent } from './modules/redireccion/redireccion.componen
 import { MascotaComponent } from '@modules/mascotas/pages/mascota/mascota.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -33,7 +34,9 @@ import { ToastrModule } from 'ngx-toastr';
     SharedModule, //recursos que se van a utulizar en mas de un modulo
     AppRoutingModule, // para modulo de rutas
     HttpClientModule, // para usar HTTPClient
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <input type="file"  class="file-input" (change)="onFileSelected($event)" #fileUpload />
+
+  <div class="file-upload">
+    <button type="button" class="btn btn-primary mt-2"
+    (click)="subir()">Subir</button>
+
+  </div>
+
+
+  <h3>Subir varios archivos</h3>
+  <div class="form-group">
+    <label for="file">File</label>
+    <input
+    formControlName="file"
+      id="file"
+      type="file"
+      multiple
+      class="form-control"
+      (change)="onFileChange($event)"
+    />
+
+    <div class="file-upload mt-2">
+      <button class="btn btn-primary"
+      type="button"
+      (click)="multiple()">Multiple</button>
+    </div>
+  </div>
+</div>
