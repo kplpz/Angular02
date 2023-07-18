@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'formulario', component: FormularioComponent, title:'Formulario' },
       { path: 'anime', loadChildren: () => import('@modules/anime/anime.module').then((m) => m.AnimeModule) },
       { path: 'upload', loadChildren: () => import('@modules/upload/upload.module').then((m) => m.UploadModule) },
+      { path: 'calendar', loadChildren: () => import('@modules/calendar/calendar.module').then((m) => m.CalendarModule) },
     ]
   },
   // para que redireccione a vacio si viene otra cosa en el path que no sea una ruta

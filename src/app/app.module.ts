@@ -15,7 +15,7 @@ import { MascotaComponent } from '@modules/mascotas/pages/mascota/mascota.compon
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 
 @NgModule({
@@ -41,7 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     {
       provide:LocationStrategy,
-      useClass: PathLocationStrategy
+      useClass: PathLocationStrategy,
     }
 
   ],

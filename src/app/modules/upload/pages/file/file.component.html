@@ -1,9 +1,8 @@
 <div class="container mt-4">
-  <input type="file"  class="file-input" (change)="onFileSelected($event)" #fileUpload />
+  <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload />
 
   <div class="file-upload">
-    <button type="button" class="btn btn-primary mt-2"
-    (click)="subir()">Subir</button>
+    <button type="button" class="btn btn-primary mt-2" (click)="subir()">Subir</button>
 
   </div>
 
@@ -11,19 +10,52 @@
   <h3>Subir varios archivos</h3>
   <div class="form-group">
     <label for="file">File</label>
-    <input
-    formControlName="file"
-      id="file"
-      type="file"
-      multiple
-      class="form-control"
-      (change)="onFileChange($event)"
-    />
+    <input formControlName="file" id="file" type="file" multiple class="form-control" (change)="onFileChange($event)" />
 
     <div class="file-upload mt-2">
-      <button class="btn btn-primary"
-      type="button"
-      (click)="multiple()">Multiple</button>
+      <button class="btn btn-primary" type="button" (click)="multiple()">Multiple</button>
     </div>
   </div>
+
+
+  <dropzone class="dropzone" style="width: 100%; height: 25vh;" [config]="config"
+    [message]="'Click o arrastra  para subir'" (success)="onFileChange($event)">
+  </dropzone>
+
+  <h3>Dropzone</h3>
+  <div class="mt-4 mb-4" style="width: 100%; height: 25vh;" class="dropzone" [dropzone]="config">
+  </div>
+
+   <h4 class="mt-4 mb-4">NgxDropzone</h4>
+  <button type="button" class="btn btn-success" (click)="multipleSubir()">Subir</button>
+  <div class="uanet_dropzone" ngx-dropzone accept="image/jpeg,image/jpg,image/png, .pdf, .docx, .xlsx"
+    (change)="onSelect($event)" [expandable]="true">
+    <ngx-dropzone-label>Click o arrastra para subir</ngx-dropzone-label>
+    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+    </ngx-dropzone-image-preview>
+  </div>
+
+
+  <!-- <div class="custom-dropzone" ngx-dropzone [accept]="'*'" (change)="onSelect($event)">
+      <ngx-dropzone-label>
+        <div>
+          <h2>My custom dropzone</h2>
+        </div>
+      </ngx-dropzone-label>
+      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-image-preview>
+    </div> -->
+
+  <!-- <div class="uanet_dropzone" ngx-dropzone accept="image/jpeg,image/jpg,image/png, .pdf, .docx, .xlsx" [expandable]="true" (change)="onSelect($event)">
+      <ngx-dropzone-label>
+        <div>
+          <h2>Drop it like it's hot</h2>
+        </div>
+      </ngx-dropzone-label>
+      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-image-preview>
+    </div> -->
 </div>
