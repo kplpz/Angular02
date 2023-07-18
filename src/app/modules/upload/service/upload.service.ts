@@ -25,4 +25,13 @@ export class UploadService {
     return this.http.post(`${this.url}/multiple`, formData);
 
   }
+  multiples(myFiles: File[]) {
+    const formData = new FormData();
+    for (var i = 0; i < myFiles.length; i++) {
+      formData.append('file', myFiles[i]);
+    }
+    console.log(formData)
+    return this.http.post(`${this.url}/multiple`, formData);
+
+  }
 }
