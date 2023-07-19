@@ -27,7 +27,6 @@ export class FullcalendarComponent {
   }
 
 
-
   constructor(
     private modalService: BsModalService,
     private fb: FormBuilder
