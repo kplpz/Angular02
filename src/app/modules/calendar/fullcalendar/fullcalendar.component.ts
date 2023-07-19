@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class FullcalendarComponent {
 
-  nuevoEvento: any
+  nuevoEvento !: EventInput
   modalRef?: BsModalRef
   formEvento !: FormGroup
   formEditEvento !: FormGroup
