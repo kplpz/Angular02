@@ -60,6 +60,16 @@
             <li routerLinkActive="active">
               <a class="nav-link" [routerLink]="['calendar/calendar']">Calendario</a>
             </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" aria-expanded="false" href="#" role="button"
+                data-bs-toggle="dropdown">Cosas</a>
+              <ul class="dropdown-menu">
+                <li routerLinkActive="active">
+                  <a class="dropdown-item" [routerLink]="['datos/excel']">Excel</a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
